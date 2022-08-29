@@ -1,0 +1,43 @@
+
+<div class="card">
+    <div class="card_background_img"></div>
+    <div class="card_profile_img"></div>
+    <div class="user_details">
+        <h3>{{data.driver_name}}</h3>
+        <p>{{data.trailer_model}}</p>
+    </div>
+    <div class="card_count">
+        <div class="count">
+            <div class="fans">
+                <h3>{{data.initDate | date:'short':'CDT'}}</h3>
+                <p>Fecha de ingreso</p>
+            </div>
+            <div class="following">
+                <h3>{{data.type_trailer}}</h3>
+                <p>Tipo trailer</p>
+            </div>
+            <div class="post">
+                <h3>{{data.plan}}</h3>
+                <p>Plan</p>
+            </div>
+            <br/>
+            <div class="post">
+                <h3>{{data.space.name}}</h3>
+                <p>Lugar</p>
+            </div>
+        </div>
+         <div class="btn" (click)="_router.navigateByUrl('/vigilante')">Cerrar</div>
+    </div>
+</div>
+
+
+
+
+<div id="qr-cliente">
+    <qr-code [value]="data.unique_key" [size]="150"></qr-code>
+</div>
+
+<div id="qr-guardia">
+    <qr-code [value]="data.unique_key" [size]="150"></qr-code>
+    <h3>{{data.unique_key}}</h3>
+</div>

@@ -1,0 +1,37 @@
+<form [formGroup]="visitForm" *ngIf="showForm">
+    <h1>Nueva visita</h1>
+    <input placeholder="Nombre del conductor" type="text" required formControlName="driver_name" />
+    <input placeholder="Modelo del tractor" type="text" required formControlName="trailer_model" />
+    <input placeholder="Numero de serie" type="text" required formControlName="serie_number" />
+    <select  formControlName="type_trailer" (change)="changeTypeTrailer($event)">
+        <option value="">--Selecciona un tipo de tractor--</option>
+        <option value="sencillo">tractor sencillo</option>
+        <option value="doble">tractor doble</option>
+        <option value="triple">tractor tiple</option>
+    </select>
+    <select formControlName="plan" (change)="changePlan($event)">
+        <option value="">--Selecciona una tarifa--</option>
+        <option value="12 horas">tarifa de 12 horas</option>
+        <option value="24 horas">tarifa de 24 horas</option>
+    </select>
+
+    <div class="spaces">
+        <div>
+            <h3>Lugares</h3>
+        </div>
+       <div class="spaces-group">
+        <div class="space" (click)="selectSpace(item,i)" [ngClass]="item.isDisponible? 'disponible' : 'ocupado'" *ngFor="let item of listOfSpaces;let i=index" >
+            <p> {{item.name}}</p>
+            <p class="secondary" >{{item.isDisponible?'DISPONIBLE':'OCUPADO'}}</p>
+         </div>
+       </div>
+    </div>
+
+        <div class="space-select" *ngIf="selectedSpace"  >
+            <p> {{selectedSpace.name}}</p>
+            <p class="secondary-select" >SELECCIONADO</p>
+         </div>
+
+    <button type="button" (click)="save()">Registrar visita</button>
+  </form>
+  <app-download-qr [data]="newVisitData" *ngIf="showDownloadQR"></app-download-qr>

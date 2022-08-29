@@ -1,0 +1,22 @@
+<main>
+  <div class="scanner" *ngIf="showScanner">
+    <select #selectList (change)="selectCamera(selectList.value)">
+      <option *ngFor="let camera of cameras" value="{{ camera.label }}">
+        {{ camera.label }}
+      </option>
+    </select>
+
+    <zxing-scanner 
+      style="width: 500px"
+      [enable]="scannerEnabled"
+      [device]="myDevice"
+      (camerasFound)="camerasFoundHandler($event)"
+      (scanSuccess)="scanSuccessHandler($event)"
+    ></zxing-scanner>
+    <p>{{results.length>0?'ENCONTRADO':'BUSCANDO....'}}</p>
+  </div>
+
+
+  <app-edit-moviment *ngIf="!showScanner" [data]="visitSelected"></app-edit-moviment>
+
+</main>

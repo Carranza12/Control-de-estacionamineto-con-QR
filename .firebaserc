@@ -1,0 +1,14 @@
+{
+  "targets": {
+    "trailer-dev": {
+      "hosting": {
+        "app-trailer": [
+          "trailer-dev"
+        ]
+      }
+    }
+  },
+  "projects": {
+    "default": "trailer-dev"
+  }
+}
